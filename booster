@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Career Booster - สร้างผลงานชิ้นแรกบนมือถือ</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --gray-text: #6b7280;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .phone-frame {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            min-height: 100vh;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        @media (min-width: 428px) {
+            .phone-frame {
+                min-height: 800px;
+                border-radius: 32px;
+                border: 8px solid #e5e7eb;
+            }
+        }
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        header h1 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin: 0 0 4px 0;
+        }
+        header p {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            margin: 0;
+        }
+        .step-container {
+            display: none;
+        }
+        .step-container.active {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        select, textarea, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+        .result-box {
+            background: #eef2ff;
+            border: 1px dashed var(--primary-color);
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            white-space: pre-wrap;
+        }
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-frame">
+    <header>
+        <h1>🚀 Mobile Career Booster</h1>
+        <p>สร้างผลงานแรกของคุณได้ง่ายๆ ด้วยมือถือ</p>
+    </header>
+
+    <!-- STEP 1: เลือกเป้าหมายงาน -->
+    <div id="step1" class="step-container active">
+        <span class="badge">ขั้นตอนที่ 1 / 3</span>
+        <label for="jobRole">เลือกสายงานใหม่ที่คุณสนใจเริ่มต้น:</label>
+        <select id="jobRole">
+            <option value="content">AI Content Assistant (ผู้ช่วยคิดคอนเทนต์)</option>
+            <option value="admin">Digital Admin (ผู้ช่วยจัดการงานออนไลน์)</option>
+            <option value="support">Customer Support (แอดมินบริการลูกค้า)</option>
+        </select>
+        <p style="font-size: 0.8rem; color: var(--gray-text); margin-top: 0;">เราจะช่วยคุณสร้างผลงานจำลองที่นำไปใช้ยื่นสมัครงานได้ทันที</p>
+        <button onclick="goToStep(2)">ถัดไป</button>
+    </div>
+
+    <!-- STEP 2: กรอกข้อมูลเบื้องต้น -->
+    <div id="step2" class="step-container">
+        <span class="badge">ขั้นตอนที่ 2 / 3</span>
+        <label for="userSkill">ทักษะเดิมหรือจุดเด่นที่คุณมี (พิมพ์สั้นๆ หรือใช้เสียงพูดพิมพ์):</label>
+        <textarea id="userSkill" placeholder="เช่น ชอบคุยกับคน ขยัน จัดระเบียบเก่ง หรือเคยขายของตลาดนัด..."></textarea>
+        
+        <label for="taskGoal">สิ่งที่คุณต้องการสร้างเป็นผลงาน:</label>
+        <input type="text" id="taskGoal" value="โพสต์โปรโมตสินค้าและบริการยุคใหม่">
+        
+        <button onclick="generatePortfolio()">สร้างผลงานด้วย AI ⚡</button>
+    </div>
+
+    <!-- STEP 3: ผลลัพธ์ Micro-Portfolio -->
+    <div id="step3" class="step-container">
+        <span class="badge">🎉 สำเร็จ! ผลงานชิ้นแรกของคุณ</span>
+        <p style="font-size: 0.85rem; color: var(--gray-text); margin-top: 0;">นี่คือผลงานใน Micro-Portfolio ที่คุณสามารถคัดลอกไปใช้สมัครงานได้ทันที:</p>
+        
+        <div class="result-box" id="outputResult">
+            กำลังสร้างผลงาน...
+        </div>
+        
+        <button onclick="resetApp()">สร้างผลงานชิ้นใหม่ 🔄</button>
+    </div>
+</div>
+
+<script>
+    function goToStep(stepNumber) {
+        document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+        document.getElementById('step2').classList.add('active');
+    }
+
+    function generatePortfolio() {
+        const role = document.getElementById('jobRole').value;
+        const skill = document.getElementById('userSkill').value || 'มีความตั้งใจเรียนรู้สิ่งใหม่';
+        const goal = document.getElementById('taskGoal').value;
+
+        let generatedText = "";
+        if (role === 'content') {
+            const templates = [
+                `📌 ผลงานชิ้นที่ 1: AI Content Creator Portfolio\n\nหัวข้อเป้าหมาย: ${goal}\nจุดเด่นผู้จัดทำ: ${skill}\n\nข้อความแนะนำตัว (AI-Enhanced Bio):\n"สวัสดีค่ะ ดิฉันเป็นผู้เชี่ยวชาญการใช้ AI ช่วยสร้างสรรค์คอนเทนต์และเรียบเรียงภาษาเพื่อการสื่อสารธุรกิจ มีจุดเด่นด้านความเข้าอกเข้าใจกลุ่มเป้าหมาย พร้อมช่วยขับเคลื่อนแบรนด์ของคุณให้โดดเด่นบนโลกดิจิทัล"`
+            ];
+            generatedText = templates[0];
+        } else if (role === 'admin') {
+            const templates = [
+                `📌 ผลงานชิ้นที่ 1: Digital Admin Portfolio\n\nหัวข้อเป้าหมาย: ${goal}\nจุดเด่นผู้จัดทำ: ${skill}\n\nแผนการจัดการงาน (Digital Workflow):\n"ผู้ช่วยจัดการระบบหลังบ้าน จัดตารางนัดหมาย และสรุปข้อมูลด้วยเครื่องมือดิจิทัลยุคใหม่ แม่นยำ รวดเร็ว และช่วยลดเวลาทำงานในออฟฟิศได้มากกว่า 40%"`
+            ];
+            generatedText = templates[0];
+        } else {
+            const templates = [
+                `📌 ผลงานชิ้นที่ 1: Customer Support Portfolio\n\nหัวข้อเป้าหมาย: ${goal}\nจุดเด่นผู้จัดทำ: ${skill}\n\nคู่มือบริการลูกค้า (Service Prompt Guide):\n"บริการด้วยใจและระบบช่วยเหลืออัตโนมัติ ตอบไว แก้ปัญหาตรงจุด สร้างความประทับใจแรกให้แก่ลูกค้าทุกคนด้วยทักษะการสื่อสารเชิงบวก"`
+            ];
+            generatedText = templates[0];
+        }
+
+        document.getElementById('outputResult').innerText = generatedText;
+        document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+        document.getElementById('step3').classList.add('active');
+    }
+
+    function resetApp() {
+        document.getElementById('userSkill').value = '';
+        document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+        document.getElementById('step1').classList.add('active');
+    }
+</script>
+
+</body>
+</html>
